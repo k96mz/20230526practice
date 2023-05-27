@@ -28,7 +28,8 @@
             });
             // 背景レイヤーインスタンスを初期化
             const backgroundLayer = L.tileLayer(
-                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
+                //'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
+                'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png' //　地理院淡色地図
                 {
                     maxZoom: 19,
                     attribution:
