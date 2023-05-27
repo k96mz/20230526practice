@@ -46,13 +46,12 @@
             );
 
             // GeoJSONレイヤーを作成
-            fetch('./P04-20_10') // 群馬県の医療機関データのGeoJSONを非同期読み込み
-            // ポリゴンデータだから出来ないのかも。。
+            fetch('./P04-20_10.geojson') // 群馬県の医療機関データのGeoJSONを非同期読み込み
                 .then((res) => res.json())
                 .then((json) => {
                     // GeoJSONレイヤーを作成
                     L.geoJSON(json)
-                        .bindPopup((layer) => layer.feature.properties.P29_004) // ポップアップで学校名を表示
+                        .bindPopup((layer) => layer.feature.properties.P04_002) // ポップアップで学校名を表示
                         .addTo(map);
                 });
         </script>
