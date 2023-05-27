@@ -3,12 +3,14 @@
 <html>
     <head>
         <title>3.地図上に多くのピンを立てる</title>
+        <!-- LeafletのCSS読み込み -->
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
             integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
             crossorigin=""
         />
+        <!-- LeafletのJavaScript読み込み -->
         <script
             src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -16,28 +18,35 @@
         ></script>
     </head>
     <body>
+        <!-- 地図を表示するdiv要素を宣言 -->
         <div id="map" style="height: 80vh"></div>
         <script>
+            // 地図インスタンスを初期化
             const map = L.map('map', {
-                center: [36.5, 137.1],
-                zoom: 5,
+                center: [36.5, 137.1], // 初期表示の地図中心の[緯度, 経度]
+                zoom: 5, // 初期ズームレベル
             });
+            // 背景レイヤーインスタンスを初期化
             const backgroundLayer = L.tileLayer(
-                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
+                // 'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', //　地理院淡色地図
+                // 'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf', //　地理院ベクトルタイル
                 {
                     maxZoom: 19,
                     attribution:
                         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 },
             );
+            // 地図インスタンスへレイヤーを追加
             map.addLayer(backgroundLayer);
-
+            
+            
             map.attributionControl.addAttribution(
                 '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html">国土数値情報 - 学校データ</a>',
             );
 
             // GeoJSONレイヤーを作成
-            fetch('./P29-21_10.geojson') // 群馬県の学校データのGeoJSONを非同期読み込み
+            fetch('./P29-21_10') // 滋賀県の過疎化データのGeoJSONを非同期読み込み
                 .then((res) => res.json())
                 .then((json) => {
                     // GeoJSONレイヤーを作成
