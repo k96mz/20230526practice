@@ -58,28 +58,28 @@
             );
 
             // 円形
-            // L.circle([35.3627808, 138.7307908], {
-            //     color: 'yellow',
-            //     fillColor: '#ff0000',
-            //     fillOpacity: 0.3,
-            //     radious: 1000,
-            // })
-            // .bindPopup('I am Circle!')
-            // .addTo(map);
+            L.circle([35.3627808, 138.7307908], {
+                color: 'yellow',
+                fillColor: '#ff0000',
+                fillOpacity: 0.3,
+                radious: 1000,
+            })
+            .bindPopup('I am Circle!')
+            .addTo(map);
 
 
             // // GeoJSONレイヤーを作成
-            // fetch('./P04-20_10.geojson') // 群馬県の医療機関データのGeoJSONを非同期読み込み
-            //     .then((res) => res.json())
-            //     .then((json) => {
-            //         // クラスタリングレイヤーを作成し地図に追加
-            //         const markers = L.markerClusterGroup()
-            //             .bindPopup(
-            //                 (layer) => layer.feature.properties.P04_002, // ポップアップで学校名を表示
-            //             ) 
-            //             .addTo(map);
-            //         L.geoJSON(json).addTo(markers); // クラスタリングレイヤーにGeoJSONデータをセット
-            //     });
+            fetch('./P04-20_10.geojson') // 群馬県の医療機関データのGeoJSONを非同期読み込み
+                .then((res) => res.json())
+                .then((json) => {
+                    // クラスタリングレイヤーを作成し地図に追加
+                    const markers = L.markerClusterGroup()
+                        .bindPopup(
+                            (layer) => layer.feature.properties.P04_002, // ポップアップで学校名を表示
+                        ) 
+                        .addTo(map);
+                    L.geoJSON(json).addTo(markers); // クラスタリングレイヤーにGeoJSONデータをセット
+                });
         </script>
     </body>
 </html>
