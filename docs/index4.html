@@ -41,7 +41,7 @@
             // 背景レイヤーインスタンスを初期化
             const backgroundLayer = L.tileLayer(
                 // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
-                // 'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.png', //　地理院タイル空中写真
+                'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.png', //　地理院タイル空中写真
                 // 'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf', //　地理院ベクトルタイル
                 {
                     maxZoom: 17,
@@ -57,18 +57,18 @@
                 '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html">国土数値情報 - 学校データ</a>',
             );
 
-            // GeoJSONレイヤーを作成
-            fetch('./P04-20_10.geojson') // 群馬県の医療機関データのGeoJSONを非同期読み込み
-                .then((res) => res.json())
-                .then((json) => {
-                    // クラスタリングレイヤーを作成し地図に追加
-                    const markers = L.markerClusterGroup()
-                        .bindPopup(
-                            (layer) => layer.feature.properties.P04_002, // ポップアップで学校名を表示
-                        ) 
-                        .addTo(map);
-                    L.geoJSON(json).addTo(markers); // クラスタリングレイヤーにGeoJSONデータをセット
-                });
+            // // GeoJSONレイヤーを作成
+            // fetch('./P04-20_10.geojson') // 群馬県の医療機関データのGeoJSONを非同期読み込み
+            //     .then((res) => res.json())
+            //     .then((json) => {
+            //         // クラスタリングレイヤーを作成し地図に追加
+            //         const markers = L.markerClusterGroup()
+            //             .bindPopup(
+            //                 (layer) => layer.feature.properties.P04_002, // ポップアップで学校名を表示
+            //             ) 
+            //             .addTo(map);
+            //         L.geoJSON(json).addTo(markers); // クラスタリングレイヤーにGeoJSONデータをセット
+            //     });
         </script>
     </body>
 </html>
