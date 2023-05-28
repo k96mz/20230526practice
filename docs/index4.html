@@ -53,35 +53,35 @@
             map.addLayer(backgroundLayer);
             
             
-            map.attributionControl.addAttribution(
-                '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html">国土数値情報 - 学校データ</a>',
-            );
+            // map.attributionControl.addAttribution(
+            //     '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html">国土数値情報 - 学校データ</a>',
+            // );
 
             // 円形
             L.circle([35.3627808, 138.7307908], {
                 color: 'yellow',
                 fillColor: '#ff0000',
                 fillOpacity: 0.3,
-                radious: 50000,
+                radious: 500000,
          })
             .bindPopup('I am Circle!')
             .addTo(map);
 
 
             // 線分
-            // L.polyline(
-            //     [
-            //         [35.36, 138.73],
-            //         [35.37, 138.73],
-            //         [35.37, 138.74],
-            //         [35.38, 138.74],
-            //         [35.39, 138.75],
-            //         [35.37, 138.75],
-            //     ]
-            //     { color: 'blue' },
-            // )
-            // .bindPopup('I am Polyline!')
-            // .addTo(map);
+            L.polyline(
+                [
+                    [35.36, 138.73],
+                    [35.37, 138.73],
+                    [35.37, 138.74],
+                    [35.38, 138.74],
+                    [35.39, 138.75],
+                    [35.37, 138.75],
+                ],
+                { color: 'blue' },
+            )
+                 .bindPopup('I am Polyline!')
+                 .addTo(map);
 
 
 
