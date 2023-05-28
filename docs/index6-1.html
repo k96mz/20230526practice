@@ -21,6 +21,10 @@
         <!-- 地図を表示するdiv要素を宣言 -->
         <div id="map" style="height: 80vh"></div>
         <script>
+            const map = L.map('map', {
+                center: [35.68, 139.7],
+                zoom: 12,
+            });
 
         // 背景地図データ
         const baseLayers = {
@@ -50,10 +54,10 @@
             },
         ),
     };
-    map.addLayer(baseLayers['OpenStreetMap']); //OSMを初期表示
-    // レイヤーの切り替えコントロール
+    map.addLayer(baseLayers['OpenStreetMap']); // OSMを初期表示
+    // レイヤー切り替えコントロール
     const layersControl = L.control
-    .layers(baseLayers, [], { collapsed; false })
+    .layers(baseLayers, [], { collapsed: false })
     .addTo(map);
     
             // // 地図インスタンスを初期化
