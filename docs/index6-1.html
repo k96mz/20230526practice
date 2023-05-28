@@ -56,24 +56,24 @@
     .layers(baseLayers, [], { collapsed; false })
     .addTo(map);
     
-            // 地図インスタンスを初期化
-            const map = L.map('map', {
-                center: [35.68, 139.7], // 初期表示の地図中心の[緯度, 経度]
-                zoom: 12, // 初期ズームレベル
-            });
-            // 背景レイヤーインスタンスを初期化
-            const backgroundLayer = L.tileLayer(
-                // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
-                'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', //　地理院タイル空中写真
-                // 'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf', //　地理院ベクトルタイル
-                {
-                    maxZoom: 17,
-                    attribution:
-                        '&copy; <a href="http://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>',
-                },
-            );
-            // 地図インスタンスへレイヤーを追加
-            map.addLayer(backgroundLayer);
+            // // 地図インスタンスを初期化
+            // const map = L.map('map', {
+            //     center: [35.68, 139.7], // 初期表示の地図中心の[緯度, 経度]
+            //     zoom: 12, // 初期ズームレベル
+            // });
+            // // 背景レイヤーインスタンスを初期化
+            // const backgroundLayer = L.tileLayer(
+            //     // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
+            //     'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', //　地理院タイル空中写真
+            //     // 'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf', //　地理院ベクトルタイル
+            //     {
+            //         maxZoom: 17,
+            //         attribution:
+            //             '&copy; <a href="http://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>',
+            //     },
+            // );
+            // // 地図インスタンスへレイヤーを追加
+            // map.addLayer(backgroundLayer);
             
         </script>
     </body>
