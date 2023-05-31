@@ -3,7 +3,6 @@
 <html>
     <head>
         <title>7.MapLibre GL JSで地図上にさらに多くの図形を表示する</title>
-        <!-- MapLibre GL JSを読み込み -->
         <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
         <link
             href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css"
@@ -23,14 +22,12 @@
                 center: [137.1, 36.5],
                 zoom: 4,
                 style: {
-                    // MapLibre-Style
                     version: 8,
                     sources: {
-                        // 地図上で使うデータを定義する
                         osm: {
-                            type: 'raster', // ラスタータイル
+                            type: 'raster',
                             tiles: [
-                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                             ],
                             tileSize: 256, // タイルの解像度, デフォルトは512
                         },
@@ -43,8 +40,8 @@
                     layers: [
                         {
                             id: 'osm-layer',
-                            source: 'osm', // 使うデータをsourcesのkeyで指定する
-                            type: 'raster', // データをどのように表示するか指定する
+                            source: 'osm',
+                            type: 'raster',
                         },
                         {
                             id: 'admin-layer',
@@ -59,6 +56,20 @@
                         },
                     ],
                 },
+            });
+
+            // クリック地点の地物の情報を取得する処理
+            map.on('click', (e) => {
+                // "admin-layer"から、クリック地点にある地物全てを取得する
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ['admin-layer'],
+                });
+                if (features.length === 0) return; // クリック地点に地物が存在しない場合は処理を終了
+
+                const feature = features[0];
+                alert(
+                    `${feature.properties.N03_007}: ${feature.properties.N03_001}${feature.properties.N03_004}`,
+                ); // 市町村コード: 都道府県名市町村名
             });
         </script>
     </body>
