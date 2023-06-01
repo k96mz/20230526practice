@@ -2,76 +2,65 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>1.地図タイルを背景として表示する</title>
-        <!-- LeafletのCSS読み込み -->
+        <title>7.MapLibre GL JSで地図上にさらに多くの図形を表示する</title>
+        <!-- MapLibre GL JSを読み込み -->
+        <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
         <link
+            href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css"
             rel="stylesheet"
-            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-            crossorigin=""
         />
-        <!-- LeafletのJavaScript読み込み -->
-        <script
-            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""
-        ></script>
     </head>
     <body>
-        <!-- 地図を表示するdiv要素を宣言 -->
         <div id="map" style="height: 80vh"></div>
         <script>
-            // 地図インスタンスを初期化
-            const map = L.map('map', {
-                center: [36.5, 137.1], // 初期表示の地図中心の[緯度, 経度]
-                zoom: 5, // 初期ズームレベル
-            });
-            // 背景レイヤーインスタンスを初期化
-            const backgroundLayer = L.tileLayer(
-                // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのURLテンプレート
-                'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', //　地理院淡色地図
-                // 'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf', //　地理院ベクトルタイル
-                {
-                    maxZoom: 19,
-                    attribution:
-                        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            // タイルのURLはhttpから始まるフルパスである必要があるため、http~~/index.htmlのhttp://~~までを取得する
+            const path = location.href.replace('/index.html', '');
+            // ベクトルタイルが、このファイルからの相対パスで`./tiles`ディレクトリに保存されているとします
+            const vectortileUrl = `${path}/tiles/{z}/{x}/{y}.pbf`;
+
+            const map = new maplibregl.Map({
+                container: 'map',
+                center: [137.1, 36.5],
+                zoom: 4,
+                style: {
+                    // MapLibre-Style
+                    version: 8,
+                    sources: {
+                        // 地図上で使うデータを定義する
+                        osm: {
+                            type: 'raster', // ラスタータイル
+                            tiles: [
+                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                            ],
+                            tileSize: 256, // タイルの解像度, デフォルトは512
+                        },
+                        admin: {
+                            type: 'vector', // ベクトルタイル
+                            tiles: [vectortileUrl],
+                            maxzoom: 8,
+                        },
+                    },
+                    layers: [
+                        {
+                            id: 'osm-layer',
+                            source: 'osm', // 使うデータをsourcesのkeyで指定する
+                            type: 'raster', // データをどのように表示するか指定する
+                        },
+                        {
+                            id: 'admin-layer',
+                            source: 'admin',
+                            'source-layer': 'admin', // ベクトルタイル内のレイヤー名を指定する
+                            type: 'fill',
+                            paint: {
+                                'fill-color': '#fa0',
+                                'fill-opacity': 0.5,
+                                'fill-outline-color': '#00f',
+                                //うまくできないので、どっかーでベクトルタイル作ろうかな。
+                            },
+                        },
+                    ],
                 },
-            );
-            // 地図インスタンスへレイヤーを追加
-            map.addLayer(backgroundLayer);
-            // ピン定義
-            const marker = L.marker([33, 129.5]); // ピン＝Markerを初期化
-            marker.bindPopup('平面直角座標1系原点'); // ポップアップを紐付け
-            map.addLayer(marker); // ピンを地図上に追加
-
-            // 下記のようにも書ける
-            L.marker([33, 131.0]).bindPopup('平面直角座標2系原点').addTo(map);
-            L.marker([36, 132.1666666]).bindPopup('平面直角座標3系原点').addTo(map);
-            L.marker([33, 133.5]).bindPopup('平面直角座標4系原点').addTo(map);
-            L.marker([36, 134.3333333]).bindPopup('平面直角座標5系原点').addTo(map);
-            L.marker([36, 136.0]).bindPopup('平面直角座標6系原点').addTo(map);
-            L.marker([36, 137.1666666]).bindPopup('平面直角座標7系原点').addTo(map);
-            L.marker([36, 138.5]).bindPopup('平面直角座標8系原点').addTo(map);
-            L.marker([36, 139.8333333]).bindPopup('平面直角座標9系原点').addTo(map);
-            L.marker([40, 140.8333333]).bindPopup('平面直角座標10系原点').addTo(map);
-            L.marker([44, 140.25]).bindPopup('平面直角座標11系原点').addTo(map);
-            L.marker([44, 142.25]).bindPopup('平面直角座標12系原点').addTo(map);
-            L.marker([44, 144.25]).bindPopup('平面直角座標13系原点').addTo(map);
-            L.marker([26, 142.0]).bindPopup('平面直角座標14系原点').addTo(map);
-            L.marker([26, 127.5]).bindPopup('平面直角座標15系原点').addTo(map);
-            L.marker([26, 124.0]).bindPopup('平面直角座標16系原点').addTo(map);
-            L.marker([26, 131.0]).bindPopup('平面直角座標17系原点').addTo(map);
-            L.marker([20, 136.0]).bindPopup('平面直角座標18系原点').addTo(map);
-            L.marker([26, 154.0]).bindPopup('平面直角座標19系原点').addTo(map);
-
-            L.marker([35.025835, 136.0195525]).bindPopup('実家!!!!!!').addTo(map);
-
-             // 出典表示を追加
-             map.attributionControl.addAttribution(
-                '<a href="https://www.gsi.go.jp/LAW/heimencho.html">平面直角座標系（平成十四年国土交通省告示第九号）</a>',
-            );
-
-
+            });
         </script>
     </body>
 </html>
