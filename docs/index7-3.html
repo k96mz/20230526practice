@@ -60,6 +60,20 @@
                     ],
                 },
             });
+
+            // クリック地点の地物の情報を取得する処理
+            map.on('click', (e) => {
+                // "admin-layer"から、クリック地点にある地物全てを取得する
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ['polygon-layer'],
+                });
+                if (features.length === 0) return; // クリック地点に地物が存在しない場合は処理を終了
+
+                const feature = features[0];
+                alert(
+                    `${feature.properties.N03_007}: ${feature.properties.N03_001}${feature.properties.N03_004}`,
+                ); // 市町村コード: 都道府県名市町村名
+            });
         </script>
     </body>
 </html>
