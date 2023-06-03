@@ -40,7 +40,7 @@
                             '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html">国土数値情報 - 行政区域データ</a>',
                         },
                     },
-                layers: [
+                    layers: [
                     {
                         id: 'osm-layer',
                         source: 'osm',
@@ -52,28 +52,12 @@
                         type: 'fill',
                         paint: {
                             // Leafletの場合と同じような色表現とするための設定
-                            'fill-color': [
-                                'rgba',
-                                255,
-                                0,
-                                0,
-                                [
-                                    'min',
-                                    1,
-                                    [
-                                       '/',
-                                        [
-                                            '/',
-                                            ['get', '人口'],
-                                            ['get', '面積'],
-                                        ],
-                                        20000,
-                                    ],
-                                ],
-                            ],
+                            'fill-color': '#fa0',
+                            'fill-opacity': 0.5,
+                            'fill-outline-color': '#00f',
                         },
                     },
-                ],
+                    ],
                 },
             });
         </script>
