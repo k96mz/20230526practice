@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>7-3.MapLibre GL JSで地図上にさらに多くの図形を表示する(ベクトルタイルではなくgeojsonで表示してみる)</title>
+        <title>7-3.MapLibre GL JSで地図上にさらに多くの図形を表示するベクトルタイルではなくgeojsonで表示してみる</title>
         <!-- MapLibre GL JSを読み込み -->
         <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
         <link
@@ -44,49 +44,8 @@
                         //     '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html">国土数値情報 - 行政区域データ</a>',
                         // },
                     },
-
-
-                    //     admin: {
-                    //         type: 'vector', // ベクトルタイル
-                    //         tiles: [vectortileUrl],
-                    //         maxzoom: 8,
-                    //     },
-                    // },
-                    // layers: [
-                    //     {
-                    //         id: 'osm-layer',
-                    //         source: 'osm', // 使うデータをsourcesのkeyで指定する
-                    //         type: 'raster', // データをどのように表示するか指定する
-                    //     },
-                    //     {
-                    //         id: 'admin-layer',
-                    //         source: 'admin',
-                    //         'source-layer': 'admin', // ベクトルタイル内のレイヤー名を指定する
-                    //         type: 'fill',
-                    //         paint: {
-                    //             'fill-color': '#fa0',
-                    //             'fill-opacity': 0.5,
-                    //             'fill-outline-color': '#00f',
-                    //             //うまくできないので、どっかーでベクトルタイル作ろうかな。
-                    //         },
-                    //     },
-                    // ],
                 },
             });
-
-            // // クリック地点の地物の情報を取得する処理
-            // map.on('click', (e) => {
-            //     // "admin-layer"から、クリック地点にある地物全てを取得する
-            //     const features = map.queryRenderedFeatures(e.point, {
-            //         layers: ['admin-layer'],
-            //     });
-            //     if (features.length === 0) return; // クリック地点に地物が存在しない場合は処理を終了
-
-            //     const feature = features[0];
-            //     alert(
-            //         `${feature.properties.N03_007}: ${feature.properties.N03_001}${feature.properties.N03_004}`,
-            //     ); // 市町村コード: 都道府県名市町村名
-            // });
         </script>
     </body>
 </html>
