@@ -58,8 +58,6 @@
                                 'background-color': '#555', // グレー
                             },
                         },
-
-
                         {
                             id: 'osm-layer',
                             source: 'osm', // 使うデータをsourcesのkeyで指定する
@@ -104,6 +102,16 @@
                             paint: {
                                 'line-color': '#373',
                                 'line-width': 4,
+                            },
+                        },
+                        {
+                            id: 'school-heatmap-layer', // 低ズームレベルでは、学校の位置情報をヒートマップとして表示
+                            source: 'school',
+                            type: 'heatmap',
+                            maxzoom: 12, // ズームレベル12までしか表示しない
+                            paint:{
+                                'heatmap-weight': 0.01, // ポイントひとつあたりの重み
+                                'heatmap-opacity': 0.7,
                             },
                         },
                     ],
