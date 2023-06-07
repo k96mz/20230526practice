@@ -48,6 +48,12 @@
                             attribution:
                             '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html">国土数値情報 - 学校データ</a>',
                         },
+                        hospital: {
+                            type: 'geojson',
+                            data: './P04-20_41.geojson',
+                            attribution:
+                            '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P04-v3_0.html">国土数値情報 - 医療機関データ',
+                        },
                     },
                     layers: [
                         {
@@ -181,12 +187,12 @@
                             },
                         },
                         {
-                            id: 'admin-label-layer',
-                            source: 'admin',
+                            id: 'hospital-label-layer',
+                            source: 'hospital',
                             type: 'symbol',
                             minzoom: 13,
                             layout: {
-                                'text-field':['get', 'N03_004'], // P29_004=学校名
+                                'text-field':['get', 'P04_002'], // P29_004=学校名
                                 'text-font': ['Noto Sans CJK JP Bold'], // glyphsのフォントデータに含まれるフォントを指定
                                 'text-offset': [0, 0.5], // フォントの位置調整
                                 'text-anchor': 'top', // フォントの位置調整
