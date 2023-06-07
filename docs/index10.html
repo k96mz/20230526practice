@@ -180,6 +180,31 @@
                                 'text-halo-color': '#fff',
                             },
                         },
+                        {
+                            id: 'admin-label-layer',
+                            source: 'admin',
+                            type: 'symbol',
+                            minzoom: 13,
+                            layout: {
+                                'text-field':['get', 'N03_004'], // P29_004=学校名
+                                'text-font': ['Noto Sans CJK JP Bold'], // glyphsのフォントデータに含まれるフォントを指定
+                                'text-offset': [0, 0.5], // フォントの位置調整
+                                'text-anchor': 'top', // フォントの位置調整
+                                'text-size': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    10, // ズームレベル10のときに
+                                    8, // フォントサイズ8
+                                    14, // ズームレベル14のときに
+                                    14, // フォントサイズ14
+                                ],
+                            },
+                            paint: {
+                                'text-halo-width': 1,
+                                'text-halo-color': '#a9a9a9',
+                            },    
+                        },
                     ],
                 },
             });
