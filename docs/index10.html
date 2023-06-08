@@ -60,6 +60,12 @@
                             attribution:
                             '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N06-v2_0.html">国土数値情報 - 高速道路時系列データ',
                         },
+                        heritage: {
+                            type: 'geojson',
+                            data: './A28-22.geojson',
+                            attribution:
+                            '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A28.html">国土数値情報 - 世界自然遺産データ',
+                        },
                     },
                     layers: [
                         {
@@ -274,6 +280,14 @@
                             paint: {
                                 'text-halo-width': 1,
                                 'text-halo-color': '#fff',
+                            },
+                        },
+                        {
+                            id: 'heritage-layer',
+                            source: 'herigate',
+                            type: 'fill',
+                            paint: {
+                                'fill-color': '#daa520', // 茶色
                             },
                         },
                     ],
