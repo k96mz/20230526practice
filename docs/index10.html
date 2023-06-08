@@ -187,12 +187,12 @@
                             },
                         },
                         {
-                            id: 'hospital-square-layer',
+                            id: 'hospital-circle-layer',
                             source: 'hospital',
-                            type: 'square',
+                            type: 'circle',
                             minzoom: 6,
                             paint: {
-                                'square-color': [
+                                'circle-color': [
                                     // アイコンの色を属性値によって塗り分ける
                                     'interpolate',
                                     ['linear'],
@@ -210,7 +210,7 @@
                             minzoom: 9,
                             layout: {
                                 'text-field':['get', 'P04_002'], // P29_004=学校名
-                                'text-font': ['Noto Sans CJK JP Bold'], // glyphsのフォントデータに含まれるフォントを指定
+                                'text-font': ['Noto Sans CJK JP Light'], // glyphsのフォントデータに含まれるフォントを指定
                                 'text-offset': [0, 0.5], // フォントの位置調整
                                 'text-anchor': 'top', // フォントの位置調整
                                 'text-size': [
