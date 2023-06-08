@@ -194,6 +194,8 @@
                             paint: {
                                 'circle-color': [
                                     // アイコンの色を属性値によって塗り分ける
+                                    'interpolate',
+                                    ['linear'],
                                     ['get', 'P04_001'], // P04_001は医療機関分類コードを示す　https://nlftp.mlit.go.jp/ksj/gml/codelist/MedClassCd.html
                                     1, '#dc143c', // 1病院は赤
                                     2, '#000080', // 2診療所は青
